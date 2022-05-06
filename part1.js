@@ -1,13 +1,12 @@
 var readlineSync = require('readline-sync');
 
 const pressAnyKey = readlineSync.question('Press any key to start the game.');
-//const strike = readlineSync.question('Enter a location to strike.');
+
 //const enterBoardSize = readlineSync.question('Enter the board size(3x3),(5x5),(10x10)');
 
 
 
-//let locationOne = Math.floor(Math.random()*107);
-//let locationTwo = Math.floor(Math.random()*66 );
+
 
 
 //create grid
@@ -31,33 +30,24 @@ let alphabet = 'abcd'.toUpperCase();
   
   const randomIndex = () => {
     let randomIndex = Math.floor(Math.random() * alphabet.length )//gives outer index of 1-4 for example
-    const r = randomIndex
-    let c = Math.floor(Math.random() * alphabet.length + 1 )
+    let randomIndexTwo = Math.floor(Math.random() * alphabet.length )//gives outer index of 1-4 for example
+    const r = randomIndex;
+    const s = randomIndexTwo;
+    let c = Math.floor(Math.random() * alphabet.length)
+    let d = Math.floor(Math.random() * alphabet.length)
     if(randomIndex){
         let gridIndex = grid[r][c]
-        console.log(grid[r][c]);
-   }
+        let gridIndexTwo = grid[s][d]
+        console.log(grid[r][c],grid[s][d]);
+        
+    }
   }
   
-
   //strike
+const strike = readlineSync.question('Enter a location to strike.');
 
 
 
-/*function randomInd (){
-    let i = 0
-   grid[i] = locationOne
-   console.log(grid[i]);
-}
-function randomIndTwo (){
-    let j = 0
-   grid[j] = locationTwo
-   console.log(grid[j]);
-}
-let ships = [
-    {location:, hits:},
-    {location:, hits:}
-]*/
 
 createGrid(alphabet.length);
 console.table(grid);
