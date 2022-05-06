@@ -6,8 +6,8 @@ const pressAnyKey = readlineSync.question('Press any key to start the game.');
 
 
 
-let locationOne = Math.floor(Math.random()*107);
-let locationTwo = Math.floor(Math.random()*66 );
+//let locationOne = Math.floor(Math.random()*107);
+//let locationTwo = Math.floor(Math.random()*66 );
 
 
 //create grid
@@ -21,11 +21,24 @@ let alphabet = 'abcd'.toUpperCase();
       let c = 0; 
       for(r = 0; r < size; r ++){
         grid[r] = [];
-        for (c = 0; c < size; c ++){
-             grid[r][c] = `${alphabet[r]}${c + 1}`;
+        for (c = 1; c < size; c ++){
+             grid[r][c] = `${alphabet[r]}${c}`
         }
     }
   };
+
+  //place ship in random index
+  
+  const randomIndex = () => {
+    let randomIndex = Math.floor(Math.random() * alphabet.length )//gives outer index of 1-4 for example
+    const r = randomIndex
+    let c = Math.floor(Math.random() * alphabet.length + 1 )
+    if(randomIndex){
+        let gridIndex = grid[r][c]
+        console.log(grid[r][c]);
+   }
+  }
+  
 
   //strike
 
@@ -45,8 +58,11 @@ let ships = [
     {location:, hits:},
     {location:, hits:}
 ]*/
+
 createGrid(alphabet.length);
 console.table(grid);
+randomIndex();
+
 
 
 
