@@ -25,6 +25,8 @@ let alphabet = 'abcd'.toUpperCase();
         }
     }
   };
+  createGrid(alphabet.length);
+  console.table(grid);
 
   //place ship in random index
   
@@ -33,25 +35,36 @@ let alphabet = 'abcd'.toUpperCase();
     let randomIndexTwo = Math.floor(Math.random() * alphabet.length )//gives outer index of 1-4 for example
     const r = randomIndex;
     const s = randomIndexTwo;
-    let c = Math.floor(Math.random() * alphabet.length)
-    let d = Math.floor(Math.random() * alphabet.length)
+    let c = Math.floor(Math.random() * alphabet.length) //FIX THE UNDEFINED
+    let d = Math.floor(Math.random() * alphabet.length + 1)
+    
     if(randomIndex){
-        let gridIndex = grid[r][c]
-        let gridIndexTwo = grid[s][d]
-        console.log(grid[r][c],grid[s][d]);
-        
+      let gridIndex = grid[r][c]
+      let gridIndexTwo = grid[s][d]
+      console.log(grid[r][c],grid[s][d]);
+      const strike = readlineSync.question('Enter a location to strike.');
+      //let searchIndex = array.includes(gridIndex || gridIndexTwo);
+      let isIndex = false;
+      
+      if(strike == grid[r][c] || grid[s][d]){
+        console.log('Hit!')
+        let isIndex = true;
+        }else if(!isIndex){
+          console.log('Miss...')
+          const strike = readlineSync.question('Enter a location to strike.');
+         //LOOP THIS ONCE IT WORKS
+        }
+      
     }
-  }
-  
+  };
+  randomIndex();
   //strike
-const strike = readlineSync.question('Enter a location to strike.');
+
+ 
 
 
 
 
-createGrid(alphabet.length);
-console.table(grid);
-randomIndex();
 
 
 
