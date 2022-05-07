@@ -1,8 +1,10 @@
 var readlineSync = require('readline-sync');
 
-const pressAnyKey = readlineSync.question('Press any key to start the game.');
+const pressAnyKey = readlineSync.question('Press any key to start the game.'); //CAN ONLY PRESS ENTER?
 
-//const enterBoardSize = readlineSync.question('Enter the board size(3x3),(5x5),(10x10)');
+let isIndex = false;
+
+
 
 
 
@@ -24,41 +26,53 @@ let alphabet = 'abcd'.toUpperCase();
              grid[r][c] = `${alphabet[r]}${c}`
         }
     }
+    console.table(grid);
   };
   createGrid(alphabet.length);
-  console.table(grid);
-
-  //place ship in random index
   
-  const randomIndex = () => {
-    let randomIndex = Math.floor(Math.random() * alphabet.length )//gives outer index of 1-4 for example
-    let randomIndexTwo = Math.floor(Math.random() * alphabet.length )//gives outer index of 1-4 for example
-    const r = randomIndex;
-    const s = randomIndexTwo;
-    let c = Math.floor(Math.random() * alphabet.length) //FIX THE UNDEFINED
-    let d = Math.floor(Math.random() * alphabet.length + 1)
+
+  //place ship in random index and strike
+ const randomIndex = () => {
+    let randomIndexOne = Math.floor(Math.random() * alphabet.length)//gives outer index of 1-4 for example
+    let randomIndexTwo = Math.floor(Math.random() * alphabet.length)//gives outer index of 1-4 for example
+    let r = randomIndexOne;
+    let s = randomIndexTwo;
+    let c = Math.floor(Math.random()*(alphabet.length -1 ) ) + 1; 
+    let d = Math.floor(Math.random()*(alphabet.length -1) ) + 1;
     
-    if(randomIndex){
+    
+    if(randomIndexOne || randomIndexTwo){
       let gridIndex = grid[r][c]
       let gridIndexTwo = grid[s][d]
-      console.log(grid[r][c],grid[s][d]);
-      const strike = readlineSync.question('Enter a location to strike.');
-      //let searchIndex = array.includes(gridIndex || gridIndexTwo);
-      let isIndex = false;
-      
-      if(strike == grid[r][c] || grid[s][d]){
-        console.log('Hit!')
-        let isIndex = true;
-        }else if(!isIndex){
-          console.log('Miss...')
-          const strike = readlineSync.question('Enter a location to strike.');
-         //LOOP THIS ONCE IT WORKS
-        }
-      
+      console.log(grid[r][c],grid[s][d])
+    }
+    let strike = readlineSync.question('Enter a location to strike.');
+    if(strike == grid[r][c] || strike == grid[s][d]){
+      console.log('Hit!')
+       isIndex = true;
+    }else if(strike !== grid[r][c] || strike !== grid[s][d]){
+      while(!isIndex){
+        console.log('Miss...')
+        let strikeAgain = readlineSync.question('Enter a location to strike.')
+        if(strikeAgain == grid[r][c] || strikeAgain == grid[s][d]){
+          console.log('Hit! You have sunk a battleship. 1 remaining')//make this dynamic
+           isIndex = true;
+        };
+      }
     }
   };
+           
+      
+     
+        
+        
+    
   randomIndex();
-  //strike
+ 
+  
+
+
+ 
 
  
 
