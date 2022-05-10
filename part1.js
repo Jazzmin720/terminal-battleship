@@ -4,7 +4,7 @@ var readlineSync = require('readline-sync');
 
 let isIndex = false;
 
-let struckShips = [];
+let struckShipsArr = [];
 
 
 
@@ -22,7 +22,7 @@ const createGrid = (size) => {
           grid[r][c] = `${alphabet[r]}${c}`
         }
       }
-      console.table(grid);
+      console.log(grid);
 };
 createGrid(alphabet.length);
 
@@ -42,26 +42,44 @@ const randomIndex = () => {
       let gridIndexTwo = grid[s][d]
       console.log(grid[r][c],grid[s][d])
     }
+
     
+  
     const strike = () => {
       const enterLocation = readlineSync.question('Enter a location to strike.')
+      
+      const removeIndex = (arr) => {
+        let struckShips = arr.push(enterLocation)
+        
+      };
+
+      let checkStrike = () => {
+        for(let i = 0; i < struckShipsArr.length; i++){
+        if(struckShipsArr[i] == enterLocation){
+          console.log('You have already chosen this location. Miss...')
+          
+        }
+      }
+    };
+      
       while(!isIndex){
         if(enterLocation == grid[r][c] || enterLocation == grid[s][d]){
             console.log('Hit!')
+            checkStrike()
+            removeIndex(struckShipsArr)
             strike();
-            
-          }else if(strike !== grid[r][c] || strike !== grid[s][d]){
-            while(!isIndex){
-             console.log('Miss...')
-             strike();
-             
-            
-            }
+        }else if(strike !== grid[r][c] || strike !== grid[s][d]){
+          while(!isIndex){
+            console.log('Miss...')
+            checkStrike()
+            removeIndex(struckShipsArr)
+            strike();
+          }
         }
       }
     }
   strike();
-  }
+}
 
   randomIndex();
     
@@ -109,13 +127,7 @@ const randomIndex = () => {
 
 
 
-  /*let deletedShips = delete grid[strike]
-  struckShips.push(deletedShips)
-  console.log(struckShips)
-  console.log('Miss...')
-  let strikeAgain = readlineSync.question('Enter a location to strike.')*/
-
-
+  
 
 
 
