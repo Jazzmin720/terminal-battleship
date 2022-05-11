@@ -38,9 +38,9 @@ const randomIndex = () => {
  
     
     if(randomIndexOne || randomIndexTwo){
-      let gridIndex = grid[r][c]      //remove this from the func
+      let gridIndex = grid[r][c]      
       let gridIndexTwo = grid[s][d]
-      console.log(grid[r][c],grid[s][d])
+      //console.log(grid[r][c],grid[s][d])
     }
 
     
@@ -52,7 +52,7 @@ const randomIndex = () => {
         let struckShips = arr.push(enterLocation)
         
       };
-
+      // check to see if the location was already chosen
       let checkStrike = () => {
         for(let i = 0; i < struckShipsArr.length; i++){
         if(struckShipsArr[i] == enterLocation){
@@ -61,7 +61,8 @@ const randomIndex = () => {
         }
       }
     };
-
+    //check to see how many ships are left
+    //if both ships are destroyed, start over or end game
     let remainingShips = () => {
       let gridNum = 1;
       for(let i = 0; i < struckShipsArr.length; i++){
@@ -120,8 +121,7 @@ const randomIndex = () => {
   
 
 
-           
-//HOW MANY BATTLESHIPS ARE LEFT
+
      
         
         
