@@ -66,12 +66,25 @@ const randomIndex = () => {
       let gridNum = 1;
       for(let i = 0; i < struckShipsArr.length; i++){
          if(struckShipsArr.includes(grid[s][d]) && struckShipsArr.includes(grid[r][c])){
-         readlineSync.question('You have destroyed all battleships. Would you like to play again? Y/N')
+         const playAgainQuestion = readlineSync.question('You have destroyed all battleships. Would you like to play again? Y/N')
+         
+          while(struckShipsArr.includes(grid[s][d]) && struckShipsArr.includes(grid[r][c])){
+            if(playAgainQuestion == 'Y'){
+              randomIndex();
+            }else if(playAgainQuestion == 'N'){
+              isIndex = true;
+            }
+           }
+        
         }else if(struckShipsArr.includes(grid[r][c]) || struckShipsArr.includes(grid[s][d])){
           console.log(`You have ${gridNum} ship remaining.`)
         }
       }
     };
+
+    
+    
+    
       
       while(!isIndex){
         if(enterLocation == grid[r][c] || enterLocation == grid[s][d]){
@@ -79,6 +92,7 @@ const randomIndex = () => {
             checkStrike()
             removeIndex(struckShipsArr)
             remainingShips()
+            
             strike();
         }else if(strike !== grid[r][c] || strike !== grid[s][d]){
           while(!isIndex){
@@ -98,8 +112,6 @@ const randomIndex = () => {
 
  
     
-
-
 
 
   
@@ -143,7 +155,6 @@ const randomIndex = () => {
 
 
   
-
 
 
 
