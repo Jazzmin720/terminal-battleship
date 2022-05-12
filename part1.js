@@ -2,9 +2,7 @@ var readlineSync = require('readline-sync');
 
  //CAN ONLY PRESS ENTER?
 
-let isIndex = false;
 
-let struckShipsArr = [];
 
 
 
@@ -35,12 +33,15 @@ const randomIndex = () => {
     let s = randomIndexTwo;
     let c = Math.floor(Math.random()*(alphabet.length -1 ) ) + 1; 
     let d = Math.floor(Math.random()*(alphabet.length -1) ) + 1;
+    let isIndex = false;
+
+let struckShipsArr = [];
  
     
     if(randomIndexOne || randomIndexTwo){
       let gridIndex = grid[r][c]      
       let gridIndexTwo = grid[s][d]
-      //console.log(grid[r][c],grid[s][d])
+      console.log(grid[r][c],grid[s][d])  //REMOVE THIS AT PRODUCTION
     }
 
     
@@ -69,9 +70,11 @@ const randomIndex = () => {
          if(struckShipsArr.includes(grid[s][d]) && struckShipsArr.includes(grid[r][c])){
          const playAgainQuestion = readlineSync.question('You have destroyed all battleships. Would you like to play again? Y/N')
          
-          while(struckShipsArr.includes(grid[s][d]) && struckShipsArr.includes(grid[r][c])){
+          if (struckShipsArr.includes(grid[s][d]) && struckShipsArr.includes(grid[r][c])){
             if(playAgainQuestion == 'Y'){
-              randomIndex();
+              createGrid(alphabet.length)
+              randomIndex()
+              isIndex = true;
             }else if(playAgainQuestion == 'N'){
               isIndex = true;
             }
@@ -96,13 +99,13 @@ const randomIndex = () => {
             
             strike();
         }else if(strike !== grid[r][c] || strike !== grid[s][d]){
-          while(!isIndex){
+         
             console.log('Miss...')
             checkStrike()
             removeIndex(struckShipsArr)
             remainingShips()
             strike();
-          }
+          
         }
       }
     }
