@@ -77,7 +77,7 @@ const randomIndex = () => {
             }
            }
         
-        }else if(struckShipsArr.includes(grid[r][c]) || struckShipsArr.includes(grid[s][d])){
+        }else if(enterLocation == grid[r][c] || enterLocation == grid[s][d]){
           console.log(`You have ${gridNum} ship remaining.`)
         }
       }
