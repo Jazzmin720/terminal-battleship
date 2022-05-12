@@ -11,7 +11,7 @@ let struckShipsArr = [];
 //create grid
 let grid = [];
 let alphabet = 'abcd'.toUpperCase();
-const pressAnyKey = readlineSync.question('Press any key to start the game.');
+const  pressAnyKey = readlineSync.keyInPause('Press any key to start the game.')
 
 const createGrid = (size) => { 
       let r;
